@@ -1,18 +1,18 @@
 import streamlit as st
 from openai import OpenAI
 
+
 # Show title and description.
-st.title("💬 Chatbot")
+st.title("GitFind")
 st.write(
     "This is a simple chatbot that uses SambaNovaCloud to generate responses. "
-    "To use this app, you need to provide Samba Nova API key, which you can get [here](https://cloud.sambanova.ai/apis). "
+    "To use this app, you need to provide Samba Nova API key, which you can get [here](https://cloud.sambanova.ai/apis)."
 )
 
 samba_nova_api_key = st.text_input("SambaNova API Key", type="password")
 if not samba_nova_api_key:
     st.info("Please add your SambaNova API key to continue.", icon="🗝️")
 else:
-
     # Create an OpenAI client.
     client = OpenAI(
             base_url="https://api.sambanova.ai/v1",
@@ -30,7 +30,7 @@ else:
             st.markdown(message["content"])
 
     if prompt := st.chat_input("What is up?"):
-
+        
         # Store and display the current prompt.
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
